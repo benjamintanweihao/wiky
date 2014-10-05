@@ -5,3 +5,5 @@ guard 'livereload' do
   watch(%r{web/views/.+\.(ex)$})
   watch(%r{priv/static/css/.+\.(css)$})
 end
+
+guard 'coffeescript', :input => 'priv/static/js'
