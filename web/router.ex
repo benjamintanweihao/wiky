@@ -1,5 +1,6 @@
 defmodule Wiky.Router do
   use Phoenix.Router
+  use Phoenix.Router.Socket, mount: "/ws"
 
   scope "/" do
     # Use the default browser stack.
@@ -8,8 +9,6 @@ defmodule Wiky.Router do
     get "/", Wiky.PageController, :index, as: :pages
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api" do
-  #   pipe_through :api
-  # end
+  channel "wiky-parser-channel", Wiky.ParserChannel
+
 end
