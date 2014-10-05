@@ -1,5 +1,6 @@
 %{"cowboy": {:package, "1.0.0"},
   "cowlib": {:package, "1.0.0"},
+  "erlsom": {:git, "git@github.com:willemdj/erlsom.git", "138b9ad2b6dc5f050a7ed431ac2615499850f7e2", []},
   "linguist": {:package, "0.1.2"},
   "phoenix": {:git, "git://github.com/phoenixframework/phoenix.git", "bddf036c8e7838ba0e59c98f997f6265e1aa369b", []},
   "plug": {:package, "0.8.0"},

@@ -25,7 +25,8 @@ defmodule Wiky.Mixfile do
   defp deps do
     [
       {:phoenix, github: "phoenixframework/phoenix"},
-      {:cowboy, "~> 1.0.0"}
+      {:cowboy, "~> 1.0.0"},
+      {:erlsom, git: "git@github.com:willemdj/erlsom.git"},
     ]
   end
 end
