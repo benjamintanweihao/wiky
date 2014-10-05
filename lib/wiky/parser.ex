@@ -4,8 +4,8 @@ defmodule Wiky.Parser do
 
   @chunk 10000 
 
-  def start_link(path, reply_fn, socket) do
-    case Agent.start_link(reply_fn, socket) do
+  def start_link(path) do
+    case Agent.start_link do
       {:ok, _pid} ->
         spawn_link(fn -> run(path) end)
       {:error, {:already_started, _pid}} ->
@@ -39,12 +39,14 @@ defmodule Wiky.Parser do
         read_bytes = offset + chunk
 
         Agent.update_progress_percentage(read_bytes/file_size_in_bytes * 100)
+        Agent.broadcast_progress
 
         {<<tail :: binary, data::binary>>, {handle, read_bytes, file_size_in_bytes, chunk}}
       :oef ->
 
         Agent.update_progress_percentage(100)
         Agent.update_progress_status("completed")
+        Agent.broadcast_progress
 
         {tail, {handle, offset, chunk}}
     end
