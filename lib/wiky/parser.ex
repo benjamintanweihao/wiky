@@ -2,7 +2,7 @@ defmodule Wiky.Parser do
   alias Wiky.Parser.State
   alias Wiky.Parser.Agent
 
-  @chunk 10000 
+  @chunk 100000
 
   def start_link(path) do
     case Agent.start_link do
