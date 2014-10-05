@@ -67,10 +67,7 @@ defmodule Wiky.Parser do
   end
 
   def sax_event_handler({:endElement, _, 'text', _}, state) do
-    state = %{state | text: state.element_acc}
-    IO.puts "Title: #{state.title}"
-    IO.puts "Text:  #{state.text}"
-    state
+    %{state | text: state.element_acc}
   end
 
   def sax_event_handler(:endDocument, state), do: state
