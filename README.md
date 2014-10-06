@@ -7,6 +7,15 @@ To start your new Phoenix application you have to:
 
 Now you can visit `localhost:4000` from your browser.
 
+## Development
+
+This project uses Coffeescript. Therefore you need to run guard to convert the files into Javascript when the coffee files change.
+
+* `mix deps.get`
+* `bundle install`
+* `bundle exec guard`
+* `mix phoenix.start`
+
 ## TODO
 
 - [ ] Merge Wiky.Parser.State with Wiky.Parser.ProgressState
