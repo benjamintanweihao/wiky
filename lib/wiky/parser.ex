@@ -2,7 +2,7 @@ defmodule Wiky.Parser do
   alias Wiky.Parser.State
   alias Wiky.Parser.ProgressState
 
-  @chunk 100000
+  @chunk 1000000
 
   def start_link(path) do
     case ProgressState.start_link do
@@ -28,7 +28,7 @@ defmodule Wiky.Parser do
     :erlsom.parse_sax("", 
                       sax_callback_state, 
                       &sax_event_handler/2, 
-                      [{:continuation_function, &continue_file/2, c_state}])
+                      parser_options(&continue_file/2, c_state))
 
     :ok = File.close(handle)
   end
@@ -74,6 +74,14 @@ defmodule Wiky.Parser do
 
   def sax_event_handler(:endDocument, state), do: state
   def sax_event_handler(_, state), do: state
+
+  defp parser_options(continuation_fn, c_state) do
+    [{:continuation_function,     continuation_fn, c_state},
+      {:max_entity_depth,         :infinity},
+      {:max_entity_size,          :infinity},
+      {:max_nr_of_entities,       :infinity},
+      {:max_expanded_entity_size, :infinity}]
+  end
 
 end
 
