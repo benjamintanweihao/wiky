@@ -18,6 +18,7 @@ This project uses Coffeescript. Therefore you need to run guard to convert the f
 
 ## TODO
 
+- [ ] Topic should be unique to connection
 - [ ] Merge Wiky.Parser.State with Wiky.Parser.ProgressState
 - [ ] Convert Wiky.Parser into GenServer
 - [ ] Attach Wiky.Parser and Wiky.Parser.ProgressState to supervision tree.
