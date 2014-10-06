@@ -19,6 +19,8 @@ This project uses Coffeescript. Therefore you need to run guard to convert the f
 ## TODO
 
 - [ ] Merge Wiky.Parser.State with Wiky.Parser.ProgressState
+- [ ] Convert Wiky.Parser into GenServer
+- [ ] Attach Wiky.Parser and Wiky.Parser.ProgressState to supervision tree.
 - [ ] Integrate Markov Chains project (Markovy)
 - [ ] Store dictionary in HashDict
 - [ ] Store dictionary in ETS
