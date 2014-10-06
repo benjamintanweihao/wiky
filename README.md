@@ -7,7 +7,11 @@ To start your new Phoenix application you have to:
 
 Now you can visit `localhost:4000` from your browser.
 
+## TODO
 
-## Notes
+-[] Merge Wiky.Parser.State with Wiky.Parser.ProgressState
+-[] Integrate Markov Chains project (Markovy)
+-[] Store dictionary in HashDict
+-[] Store dictionary in ETS
+-[] Generate Markov Chains from ETS
 
-* If you choose to change the application's structure, you could manually start the router from your code like this `Wiky.Router.start`
