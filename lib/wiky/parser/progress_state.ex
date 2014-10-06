@@ -13,7 +13,7 @@ defmodule Wiky.Parser.ProgressState do
   end
 
   def completed? do
-    get_progress_status == "completed?"
+    get_progress_status == "completed"
   end
 
   def get_state do
@@ -34,14 +34,9 @@ defmodule Wiky.Parser.ProgressState do
     end)
   end
 
-  def update_progress_status(status) do
+  def update_progress(status, percentage) do
     Agent.update(__MODULE__, fn state ->
-      %{state | progress_status: status}
-    end)
-  end
-
-  def update_progress_percentage(percentage) do
-    Agent.update(__MODULE__, fn state ->
+      state = %{state | progress_status: status}
       %{state | progress_percentage: percentage}
     end)
   end

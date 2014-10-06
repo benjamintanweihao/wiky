@@ -2,7 +2,6 @@ defmodule Wiky.Parser do
   alias Wiky.Parser.State
   alias Wiky.Parser.ProgressState
 
-  @chunk 1000000
 
   def start_link(path) do
     case ProgressState.start_link do
@@ -19,11 +18,10 @@ defmodule Wiky.Parser do
     {:ok, handle}      = File.open(path, [:binary])
     file_size_in_bytes = File.stat!(path).size
 
+    chunk              = 1000000
     position           = 0
-    c_state            = {handle, position, file_size_in_bytes, @chunk}
+    c_state            = {handle, position, file_size_in_bytes, chunk}
     sax_callback_state = nil
-
-    ProgressState.update_progress_status("started")
 
     :erlsom.parse_sax("", 
                       sax_callback_state, 
@@ -38,14 +36,13 @@ defmodule Wiky.Parser do
       {:ok, data} ->
         read_bytes = offset + chunk
 
-        ProgressState.update_progress_percentage(read_bytes/file_size_in_bytes * 100)
+        ProgressState.update_progress("started", read_bytes/file_size_in_bytes * 100)
         ProgressState.broadcast_progress
 
         {<<tail :: binary, data::binary>>, {handle, read_bytes, file_size_in_bytes, chunk}}
       :oef ->
 
-        ProgressState.update_progress_percentage(100)
-        ProgressState.update_progress_status("completed")
+        ProgressState.update_progress("completed", 100)
         ProgressState.broadcast_progress
 
         {tail, {handle, offset, chunk}}
