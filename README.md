@@ -9,9 +9,9 @@ Now you can visit `localhost:4000` from your browser.
 
 ## TODO
 
--[] Merge Wiky.Parser.State with Wiky.Parser.ProgressState
--[] Integrate Markov Chains project (Markovy)
--[] Store dictionary in HashDict
--[] Store dictionary in ETS
--[] Generate Markov Chains from ETS
+- [] Merge Wiky.Parser.State with Wiky.Parser.ProgressState
+- [] Integrate Markov Chains project (Markovy)
+- [] Store dictionary in HashDict
+- [] Store dictionary in ETS
+- [] Generate Markov Chains from ETS
 
