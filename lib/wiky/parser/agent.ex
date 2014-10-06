@@ -1,4 +1,4 @@
-defmodule Wiky.Parser.Agent do
+defmodule Wiky.Parser.ProgressState do
 
   def start_link do
     Agent.start_link(fn -> %{progress_percentage: 0, progress_status: "not_started"} end, name: __MODULE__) 

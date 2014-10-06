@@ -1,15 +1,15 @@
 defmodule Wiky.Parser do
   alias Wiky.Parser.State
-  alias Wiky.Parser.Agent
+  alias Wiky.Parser.ProgressState
 
   @chunk 100000
 
   def start_link(path) do
-    case Agent.start_link do
+    case ProgressState.start_link do
       {:ok, _pid} ->
         spawn_link(fn -> run(path) end)
       {:error, {:already_started, _pid}} ->
-        if Agent.not_started?, do: spawn_link(fn -> run(path) end)
+        if ProgressState.not_started?, do: spawn_link(fn -> run(path) end)
       _ ->
         IO.puts "Something horrible happened!"
     end
@@ -23,7 +23,7 @@ defmodule Wiky.Parser do
     c_state            = {handle, position, file_size_in_bytes, @chunk}
     sax_callback_state = nil
 
-    Agent.update_progress_status("started")
+    ProgressState.update_progress_status("started")
 
     :erlsom.parse_sax("", 
                       sax_callback_state, 
@@ -38,15 +38,15 @@ defmodule Wiky.Parser do
       {:ok, data} ->
         read_bytes = offset + chunk
 
-        Agent.update_progress_percentage(read_bytes/file_size_in_bytes * 100)
-        Agent.broadcast_progress
+        ProgressState.update_progress_percentage(read_bytes/file_size_in_bytes * 100)
+        ProgressState.broadcast_progress
 
         {<<tail :: binary, data::binary>>, {handle, read_bytes, file_size_in_bytes, chunk}}
       :oef ->
 
-        Agent.update_progress_percentage(100)
-        Agent.update_progress_status("completed")
-        Agent.broadcast_progress
+        ProgressState.update_progress_percentage(100)
+        ProgressState.update_progress_status("completed")
+        ProgressState.broadcast_progress
 
         {tail, {handle, offset, chunk}}
     end
