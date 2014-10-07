@@ -1,6 +1,12 @@
 # Wiky
 
-To start your new Phoenix application you have to:
+Wiky is a Markov Chain random sentence generator that uses Wikipedia as the corpus.
+
+Wiky is built using [Phoenix](https://github.com/phoenixframework/phoenix).
+
+## Starting Up:
+
+To start Wiky you have to:
 
 1. Install dependencies with `mix deps.get`
 2. Start Phoenix router with `mix phoenix.start`
@@ -23,11 +29,9 @@ This project uses Coffeescript. Therefore you need to run guard to convert the f
 ## TODO
 
 - [ ] Topic should be unique to connection
-- [ ] Merge Wiky.Parser.State with Wiky.Parser.ProgressState
 - [ ] Convert Wiky.Parser into GenServer
 - [ ] Attach Wiky.Parser and Wiky.Parser.ProgressState to supervision tree.
-- [ ] Integrate Markov Chains project (Markovy)
-- [ ] Store dictionary in HashDict
-- [ ] Store dictionary in ETS
-- [ ] Generate Markov Chains from ETS
+- [X] Integrate Markov Chains project (Markovy)
+- [X] Store dictionary in ETS
+- [X] Generate Markov Chains from ETS
 
