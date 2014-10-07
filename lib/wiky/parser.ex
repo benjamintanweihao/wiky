@@ -1,7 +1,8 @@
 defmodule Wiky.Parser do
   alias Wiky.Parser.State
   alias Wiky.Parser.ProgressState
-
+  alias Wiky.Markov.Dictionary
+  alias Wiky.Markov.Worker
 
   def start_link(path) do
     case ProgressState.start_link do
