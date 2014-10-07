@@ -15,5 +15,19 @@ angular.module('wiky')
             $scope.$apply($scope.progressText)
           )
         )
+
+      $scope.generateSentence = ->
+        word = $scope.seedPrefix.trim()
+
+        $http.get('/generate_sentence', 
+            params:
+              seed_prefix: word
+          ).
+          success((data, status, headers, config) ->
+            $scope.generatedSentence = data.result
+          ).
+          error((data, status, headers, config) ->
+            alert(data)
+          )
   ]
 

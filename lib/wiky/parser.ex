@@ -24,6 +24,8 @@ defmodule Wiky.Parser do
     c_state            = {handle, position, file_size_in_bytes, chunk}
     sax_callback_state = nil
 
+    Dictionary.start_link
+
     :erlsom.parse_sax("", 
                       sax_callback_state, 
                       &sax_event_handler/2, 
@@ -66,8 +68,14 @@ defmodule Wiky.Parser do
     %{state | title: state.element_acc}
   end
 
-  def sax_event_handler({:endElement, _, 'text', _}, state) do
-    %{state | text: state.element_acc}
+  def sax_event_handler({:endElement, _, 'text', _}, %State{element_acc: text} = state) do
+    spawn(fn -> 
+      :poolboy.transaction(:dictionary_worker_pool, fn(worker) ->
+        Worker.run(worker, text)
+      end)
+    end)
+
+    %{state | text: state}
   end
 
   def sax_event_handler(:endDocument, state), do: state

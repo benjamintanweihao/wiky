@@ -28,16 +28,16 @@
       <h3>
         Step 2: Enter a word to generate a sentence.
       </h3>
-      <form role="form">
-        <div class="form-group">
-          <input id="seed-prefix-input" type='text' placeholder='Enter 1 word here' class='form-control' />
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+      <div class="form-group">
+        <input id="seed-prefix-input" type='text' placeholder='Enter 1 word here' class='form-control' ng-model="seedPrefix" />
+      </div>
+      <button type="submit" class="btn btn-default" ng-click="generateSentence()">Submit</button>
 
-        <h4>Generated Sentence:</h4>
-        <textarea rows='4' class='form-control'></textarea>
-      </form>
+      <h4>Generated Sentence:</h4>
+      <textarea rows='6' class='form-control' ng-model="generatedSentence"></textarea>
     </div>
   </div>
 </div>
 
+<div id="footer">
+</div>
