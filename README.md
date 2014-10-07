@@ -7,6 +7,10 @@ To start your new Phoenix application you have to:
 
 Now you can visit `localhost:4000` from your browser.
 
+## Screenshot
+
+![screenshot](http://i.imgur.com/C75KIOm.png)
+
 ## Development
 
 This project uses Coffeescript. Therefore you need to run guard to convert the files into Javascript when the coffee files change.
