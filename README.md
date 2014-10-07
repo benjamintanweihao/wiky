@@ -21,10 +21,10 @@ Now you can visit `localhost:4000` from your browser.
 
 This project uses Coffeescript. Therefore you need to run guard to convert the files into Javascript when the coffee files change.
 
-* `mix deps.get`
-* `bundle install`
-* `bundle exec guard`
-* `mix phoenix.start`
+1. `mix deps.get`
+2. `bundle install`
+3. `bundle exec guard`
+4. `mix phoenix.start`
 
 ## TODO
 
