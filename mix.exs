@@ -27,6 +27,7 @@ defmodule Wiky.Mixfile do
       {:phoenix, github: "phoenixframework/phoenix"},
       {:cowboy, "~> 1.0.0"},
       {:erlsom, git: "git@github.com:willemdj/erlsom.git"},
+      {:poolboy, github: "devinus/poolboy"}
     ]
   end
 end
